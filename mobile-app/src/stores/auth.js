@@ -5,7 +5,18 @@ import api from '@/services/api';
 
 export const useAlmacenAuth = defineStore('auth', () => {
   /* Estado */
-  const usuario = ref(JSON.parse(localStorage.getItem('bw_usuario') || 'null'));
+  let usuarioInicial = null;
+  try {
+    const almacenado = localStorage.getItem('bw_usuario');
+    if (almacenado && almacenado !== 'undefined' && almacenado !== 'null') {
+      usuarioInicial = JSON.parse(almacenado);
+    }
+  } catch (e) {
+    console.error('Error al inicializar usuario desde localStorage:', e);
+    localStorage.removeItem('bw_usuario');
+  }
+
+  const usuario = ref(usuarioInicial);
   const token = ref(localStorage.getItem('bw_token') || '');
   const cargando = ref(false);
   const error = ref('');

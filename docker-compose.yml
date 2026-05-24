@@ -39,7 +39,7 @@ services:
       MYSQL_USER: bovweight_user
       MYSQL_PASSWORD: secretpassword
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
 
