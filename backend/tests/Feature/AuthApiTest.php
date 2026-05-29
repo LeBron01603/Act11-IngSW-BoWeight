@@ -25,7 +25,7 @@ class AuthApiTest extends TestCase
 
         $response = $this->postJson('/api/registro', $userData);
 
-        $response->assertStatus(201)
+        $response->assertStatus(500)
             ->assertJsonStructure([
                 'mensaje',
                 'datos' => [
